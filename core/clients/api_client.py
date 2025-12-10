@@ -60,10 +60,9 @@ class APIClient:
 
         response_json = response.json()
 
-        # ВАЖНО: Токен находится в response.json()['data']['token']
         token = response_json['data']['token']
         with allure.step('Updating header with authorization'):
-            self.session.headers.update({'Authorization': f'Bearer {token}'})
+            self.session.headers.update({'x-auth-token': f'{token}'})
 
 
     def get_notes_by_id(self, notes_id):
